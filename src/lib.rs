@@ -8,8 +8,6 @@ use std::ops::{
     Mul,
     MulAssign,
     Neg,
-    Rem,
-    RemAssign,
     Sub,
     SubAssign,
 };
@@ -18,6 +16,7 @@ use math_concept::{
     zero::Zero,
     one::One,
     pow::Pow,
+    sqrt::Sqrt,
 };
 
 use std::fmt;
@@ -52,14 +51,13 @@ where
 
 impl<T> Complex<T>
 where
-    T: One + Add<Output = T> + Pow<T, Output = T> + Clone,
+    T: One + Add<Output = T> + Pow<T, Output = T> + Sqrt<Output = T> + Clone,
 {
     pub fn abs(&self) -> T {
         let two = T::one() + T::one();
         let pow_sum =
             self.re.clone().pow(two.clone()) + self.im.clone().pow(two);
-        pow_sum
-        //pow_sum.sqrt()
+        pow_sum.sqrt()
     }
 }
 /*
